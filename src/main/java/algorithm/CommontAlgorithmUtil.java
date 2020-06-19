@@ -47,4 +47,16 @@ public class CommontAlgorithmUtil {
     }
 
 
+    /**
+     * 找出一个数最右侧的1
+     * @param i
+     * @return
+     */
+    public static int right1(int i){
+        return i&(~i+1);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(right1(3));
+    }
 }
