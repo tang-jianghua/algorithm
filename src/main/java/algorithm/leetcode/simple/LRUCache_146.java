@@ -51,8 +51,7 @@ public class LRUCache_146 {
         Node node = map.get(key);
         if (node == null) {
             return -1;
-        }
-        else if (node == head) {
+        } else if (node == head) {
             head = head.next;
             head.pre = null;
             swapTail(node);
