@@ -41,17 +41,15 @@ public class AlgorithmUtil {
      * @return
      */
     public static int[] generatorRandomArr(int maxSize, int maxValue) {
-        if (maxSize < 0) {
-            return null;
-        }
-        if (maxSize == 0) {
-            return new int[0];
-        }
         //Math.random() [0,1)
         //(n+1)*Math.random() [0,n+1)
         //int((n+1)*Math.random()) [0,n]
         //int((n+1)*Math.random())-int((n+1)*Math.random()) [0,n]-[0,n]=[-n,n]
-        int[] ints = new int[(int) ((maxSize + 1) * Math.random())];
+        int size = (int) ((maxSize + 1) * Math.random());
+        if (maxSize <= 2 || size <=1) {
+            size = 2;
+        }
+        int[] ints = new int[size];
         for (int i = 0; i < ints.length; i++) {
             ints[i] = ((int) ((maxValue + 1) * Math.random())-(int) ((maxValue + 1) * Math.random()));
         }
