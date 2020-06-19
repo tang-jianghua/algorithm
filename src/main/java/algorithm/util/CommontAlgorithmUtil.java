@@ -1,4 +1,4 @@
-package main.java.algorithm;
+package main.java.algorithm.util;
 
 /**
  * 常用算法归纳

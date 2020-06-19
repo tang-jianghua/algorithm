@@ -10,7 +10,7 @@ import main.java.algorithm.util.AlgorithmUtil;
  * date 2020/6/12
  * time 11:57
  */
-public class Code005_BSAwesome {
+public class Code006_BSAwesome {
 
     public static void main(String[] args) {
         int[] ints = AlgorithmUtil.generatorRandomArr(20, 100);
