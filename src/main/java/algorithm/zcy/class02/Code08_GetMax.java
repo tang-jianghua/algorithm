@@ -3,6 +3,10 @@ package main.java.algorithm.zcy.class02;
 import main.java.algorithm.util.AlgorithmUtil;
 
 /**
+ * T(N)=a*T(N/b)+O(N^d)
+ * T(N)=2*T(N/2)+O(N^0)
+ * log(2,2)>0
+ * T(N)=O(N^log(b,a))=O(N)
  * @author tangjianghua
  * date 2020/6/22
  * time 16:05
