@@ -3,6 +3,7 @@ package main.java.algorithm.zcy.class02;
 import java.util.Stack;
 
 /**
+ * 使用栈结构实现一个可以查看当前最小节点的栈
  * @author tangjianghua
  * date 2020/6/22
  * time 14:40

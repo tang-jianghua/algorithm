@@ -5,6 +5,7 @@ import java.util.Queue;
 import java.util.Stack;
 
 /**
+ * 使用两个队列实现栈
  * @author tangjianghua
  * date 2020/6/22
  * time 15:30

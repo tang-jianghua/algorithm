@@ -3,6 +3,7 @@ package main.java.algorithm.zcy.class02;
 import java.util.Stack;
 
 /**
+ * 使用两个栈实现队列
  * @author tangjianghua
  * date 2020/6/22
  * time 15:08

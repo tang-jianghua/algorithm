@@ -7,6 +7,7 @@ import main.java.algorithm.util.AlgorithmUtil;
  * T(N)=2*T(N/2)+O(N^0)
  * log(2,2)>0
  * T(N)=O(N^log(b,a))=O(N)
+ * 查找一个数组中的最大值
  * @author tangjianghua
  * date 2020/6/22
  * time 16:05
