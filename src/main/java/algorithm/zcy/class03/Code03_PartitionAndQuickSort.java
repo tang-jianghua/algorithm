@@ -3,9 +3,9 @@ package main.java.algorithm.zcy.class03;
 import main.java.algorithm.util.AlgorithmUtil;
 
 import java.util.Arrays;
-import java.util.Random;
 
 /**
+ * 归并快排
  * @auth tangjianghua
  * @date 2020/7/18
  */
