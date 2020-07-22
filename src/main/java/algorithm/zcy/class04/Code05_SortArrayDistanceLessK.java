@@ -6,7 +6,8 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 /**
- *
+ * 已知一个数组要排好序，每个元素移动的距离不超过k，对该数组进行排序。
+ * O(N*logK)
  * @auth tangjianghua
  * @date 2020/7/19
  */
@@ -47,7 +48,7 @@ public class Code05_SortArrayDistanceLessK {
 
         //AlgorithmUtil.printArr(arr);
 
-        //使用自己的大根堆
+        //使用PriorityQueue
         PriorityQueue<Integer> heap = new PriorityQueue<>();
 
         //先把前k个元素加入大根堆中。
