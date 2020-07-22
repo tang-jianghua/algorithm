@@ -55,6 +55,28 @@ public class AlgorithmUtil {
         }
         return ints;
     }
+    /**
+     * 对数器
+     *
+     * @param maxSize
+     * @param maxValue
+     * @return
+     */
+    public static int[] generatorRandomArr(int maxSize,int minValue, int maxValue) {
+        //Math.random() [0,1)
+        //(n+1)*Math.random() [0,n+1)
+        //int((n+1)*Math.random()) [0,n]
+        //int((n+1)*Math.random())-int((n+1)*Math.random()) [0,n]-[0,n]=[-n,n]
+        int size = (int) ((maxSize + 1) * Math.random());
+        if (maxSize <= 2 || size <=1) {
+            size = 2;
+        }
+        int[] ints = new int[size];
+        for (int i = 0; i < ints.length; i++) {
+            ints[i] = (int) ((maxValue + 1-minValue) * Math.random())+minValue;
+        }
+        return ints;
+    }
 
     public static int[] copyArr(int[] arr){
         if(arr==null){
