@@ -16,17 +16,20 @@ public class Code02_Light {
         char[] chars = str.toCharArray();
         int count=0;
         for (int i = 0; i < chars.length; i++) {
-            if(chars[i]=='.'){
-                count++;
-            }else{
+            //X跳过
+            if(chars[i]=='X'){
                 continue;
             }
+            //遇到. 先把灯++
+            count++;
             if(i==chars.length-1){
                 break;
             }
+            //如果下一个是X 跳过1个
             if(chars[i+1]=='X'){
                 i++;
             }else{
+                //否则 跳过2个
                 i+=2;
             }
         }

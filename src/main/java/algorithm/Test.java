@@ -15,8 +15,9 @@ public class Test {
 
 
     public static void main(String[] args) {
-        exist();
+        //exist();
 
+        System.out.println(Test2.x);
     }
 
     public static void sort() {
@@ -38,5 +39,6 @@ public class Test {
         boolean exist = Code004_BSExist.exist(ints, ints[0] );
         System.out.println(exist);
     }
+
 }
 

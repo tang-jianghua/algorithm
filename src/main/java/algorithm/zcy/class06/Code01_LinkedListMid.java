@@ -3,10 +3,6 @@ package main.java.algorithm.zcy.class06;
 import java.util.ArrayList;
 
 /**
- * 认识二叉树的前中后序
- * 前序-头左右
- * 中序-左头右
- * 后序-左右头
  * <p>
  * 快慢指针的使用:
  * 快指针走两步，慢指针走一步。
