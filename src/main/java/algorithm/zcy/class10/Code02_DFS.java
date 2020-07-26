@@ -34,6 +34,7 @@ public class Code02_DFS {
 						printed.add(next);
 						nodes.push(next);
 						System.out.println(next.value);
+						break;
 					}
 
 				}
