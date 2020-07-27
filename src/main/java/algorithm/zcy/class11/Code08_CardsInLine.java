@@ -12,11 +12,11 @@ package main.java.algorithm.zcy.class11;
 public class Code08_CardsInLine {
 
     public static int maxScore(int[] arr) {
-        if(arr==null || arr.length==0){
+        if (arr == null || arr.length == 0) {
             return 0;
         }
 
-        return Math.max(f(arr,0,arr.length-1),l(arr,0,arr.length-1));
+        return Math.max(f(arr, 0, arr.length - 1), l(arr, 0, arr.length - 1));
 
     }
 
@@ -53,15 +53,43 @@ public class Code08_CardsInLine {
         //base case
         if (l == r) return 0;
         //要让下一个先拿的更小
-        return Math.min(f(arr,l+1,r),f(arr,l,r-1));
+        return Math.min(f(arr, l + 1, r), f(arr, l, r - 1));
+    }
+
+
+    public static int dpway(int[] arr) {
+        //过滤
+        if (arr == null || arr.length == 0) {
+            return 0;
+        }
+        int N = arr.length;
+        int[][] f = new int[N][N];
+        int[][] s = new int[N][N];
+        for (int i = 0; i < N; i++) {
+            f[i][i] = arr[i];
+            s[i][i] = 0;
+        }
+        for (int col = 1; col < N; col++) {
+            int l=0;
+            int r=col;
+            while (l<N&&r<N){
+                f[l][r] = Math.max(arr[l] + s[l + 1][r], arr[r] + s[l][r - 1]);
+                s[l][r] = Math.min(f[l + 1][r], f[l][r - 1]);
+                l++;
+                r++;
+            }
+        }
+
+        return Math.max(f[0][N - 1], s[0][N - 1]);
+
     }
 
 
     public static void main(String[] args) {
-        int[] arr = { 4,7,9,5,19,29,80,4 };
+        int[] arr = {4, 7, 9, 5, 19, 29, 80, 4};
         // A 4 9
         // B 7 5
         System.out.println(maxScore(arr));
-        //System.out.println(win2(arr));
+        System.out.println(dpway(arr));
     }
 }
