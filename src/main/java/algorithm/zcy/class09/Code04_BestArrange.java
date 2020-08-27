@@ -36,7 +36,7 @@ public class Code04_BestArrange {
 	}
 
 	/**
-	 * @param programs 还剩什么会议都放在meetings里
+	 * @param programs 还剩什么会议都放在programs里
 	 * @param done 之前已经安排了多少会议，数量
 	 * @param timeEnd 目前来到的时间点是什么
 	 * @return 能安排的最多会议数量

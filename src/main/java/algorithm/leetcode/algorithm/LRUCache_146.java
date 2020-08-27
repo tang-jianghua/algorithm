@@ -1,6 +1,4 @@
-package main.java.algorithm.leetcode.simple;
-
-import sun.misc.LRUCache;
+package main.java.algorithm.leetcode.algorithm;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,20 +19,42 @@ import java.util.Map;
  * 链接：https://leetcode-cn.com/problems/lru-cache
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  *
+ * 思路：
+ * LRU缓存涉及到增删改查
+ *  -查询通过map来实现O(1)复杂度
+ *  -增删改通过链表来实现O(1)复杂度
+ *  -整个数据结构中会缓存两份一模一样的数据引用，一份缓存数据。
+ *      -map中的value和head中的节点是同一个数据，map用来实现查询索引，链表用来修改数据源
  * @author tangjianghua
  * date 2020/6/19
  * time 13:15
  */
 public class LRUCache_146 {
 
+    /**
+     * 通过map结构来达到O(1)查找节点
+     */
     private Map<Object, Node> map;
 
+    /**
+     * 记录链表的头节点，代表最久未使用的
+     */
     private Node head;
 
+    /**
+     * 记录链表的尾节点
+     */
     private Node tail;
 
+    /**
+     * 指定缓存容量
+     */
     private int capacity;
 
+    /**
+     * 构造函数首先要支持缓存量的设置
+     * @param capacity
+     */
     public LRUCache_146(int capacity) {
         map = new HashMap(capacity);
         this.capacity = capacity;
@@ -75,6 +95,7 @@ public class LRUCache_146 {
             //存在则变更
             node.setValue(value);
         } else {
+            //不存在需要新增，新增需要考虑LRU
             node = new Node();
             node.setKey(key);
             node.setValue(value);
@@ -83,6 +104,7 @@ public class LRUCache_146 {
                 head = tail = node;
                 return;
             }
+            //如果缓存满了，移除最久未使用的节点，即头节点
             if (map.size() == capacity) {
                 map.remove(head.getKey());
                 head = head.next;
