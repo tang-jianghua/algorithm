@@ -5,6 +5,7 @@ import main.java.algorithm.util.AlgorithmUtil;
 import java.util.Arrays;
 
 /**
+ * O(N^2)
  * @auth tangjianghua
  * @date 2020/8/28
  */

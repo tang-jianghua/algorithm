@@ -1,4 +1,6 @@
-package main.java.algorithm.leetcode.thread.q1114;
+package main.java.algorithm.leetcode.thread.simple.q1114;
+
+import java.util.concurrent.Exchanger;
 
 /**
  * 我们提供了一个类：
@@ -24,39 +26,35 @@ package main.java.algorithm.leetcode.thread.q1114;
  * @auth tangjianghua
  * @date 2020/7/28
  */
-public class PrintByOrderWithVolatile {
+public class PrintByOrderWithExchanger {
 
-    volatile int count = 0;
+    Exchanger<Object> exchanger = new Exchanger<>();
+    Exchanger<Object> exchanger2 = new Exchanger<>();
 
     public void first(Runnable printFirst) throws InterruptedException {
         // printFirst.run() outputs "first". Do not change or remove this line.
-        while (count != 0) {
-        }
         printFirst.run();
-        count++;
+        exchanger.exchange(1);
     }
 
     public void second(Runnable printSecond) throws InterruptedException {
 
         // printSecond.run() outputs "second". Do not change or remove this line.
-        while (count != 1) {
-        }
+        exchanger.exchange(1);
         printSecond.run();
-        count++;
+        exchanger2.exchange(1);
     }
 
     public void third(Runnable printThird) throws InterruptedException {
 
         // printThird.run() outputs "third". Do not change or remove this line.
-        while (count != 2) {
-        }
+        exchanger2.exchange(1);
         printThird.run();
-        count++;
     }
 
 
     public static void main(String[] args) throws InterruptedException {
-        PrintByOrderWithVolatile printByOrderWithVolatile = new PrintByOrderWithVolatile();
+        PrintByOrderWithExchanger printByOrderWithVolatile = new PrintByOrderWithExchanger();
 
         new Thread(() -> {
             try {

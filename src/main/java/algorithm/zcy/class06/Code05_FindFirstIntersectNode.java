@@ -4,7 +4,7 @@ package main.java.algorithm.zcy.class06;
  * 给出两个链表的头节点，获取两个链表的第一个相交点
  * <p>
  * 分情况
- * 1.一个有环一个无欢 不相交
+ * 1.一个有环一个无环 不相交
  * 2.两个无环
  * --2.1 相交：终点一致
  * --2.2 未相交：终点不一致
@@ -13,7 +13,7 @@ package main.java.algorithm.zcy.class06;
  * --3.2 入环节点不一致：
  * --3.2.1 未相交：一个环节点在另一个环节点上不存在
  * --3.2.2 环节点后相交：一个环节点在另一个环节点上
- * 使用快慢指针获取换节点
+ * 使用快慢指针获取环节点
  *
  * @auth tangjianghua
  * @date 2020/7/24
@@ -73,14 +73,18 @@ public class Code05_FindFirstIntersectNode {
             return noLoop(head1, head2);
         }
 
+        //1.一个有环一个无欢 不相交
+        if(loopNode1 == null || loopNode2 == null){
+            return null;
+        }
+
         //3.两个有环
 
-        //1.一个有环一个无欢 不相交
-        return null;
+        return loop(head1,head2,loopNode1,loopNode2);
     }
 
     /**
-     * 两个无欢时获取第一个相交点
+     * 两个无环时获取第一个相交点
      */
     public static Node noLoop(Node head1, Node head2) {
         Node node1 = head1;

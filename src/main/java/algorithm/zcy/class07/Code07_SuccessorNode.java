@@ -7,8 +7,8 @@ package main.java.algorithm.zcy.class07;
  * 给定一个节点x：
  * -- 如果x存在右节点，按照中序遍历的规则，后继节点一定是x的右子树的最左节点。
  * -- 如果x不存在右节点，那么说明x处在一个已经遍历完的子树的最后节点，后继节点分两种情况
- * -- 如果这棵子树的头节点处在左节点位置，那么这棵子树的头节点就是后继节点
- * -- 如果这颗子树的头节点处在右节点位置，那么不断往上扩大这棵子树，直到子树处在左节点为止，
+ * ---- 如果这棵子树的头节点处在左节点位置，那么这棵子树的头节点就是后继节点
+ * ---- 如果这颗子树的头节点处在右节点位置，那么不断往上扩大这棵子树，直到子树处在左节点为止，
  * 或者直到扩大整棵树，说明x没有后继节点
  *
  * @auth tangjianghua
@@ -60,29 +60,65 @@ public class Code07_SuccessorNode {
         }
     }
 
+    /**
+     * 中序遍历
+     *
+     * @param head
+     */
+    public static void inPrint(Node head) {
+        if (head == null) {
+            return;
+        }
+        inPrint(head.left);
+        System.out.print(head.value+" ");
+        inPrint(head.right);
+    }
+
+    /**
+     * 6
+     * /      \
+     * 3         9
+     * / \       / \
+     * 1   4     8   10
+     * \   \   /
+     * 2   5 7
+     *
+     * @param args
+     */
 
     public static void main(String[] args) {
         Node head = new Node(6);
         head.parent = null;
+
         head.left = new Node(3);
         head.left.parent = head;
+
         head.left.left = new Node(1);
         head.left.left.parent = head.left;
+
         head.left.left.right = new Node(2);
         head.left.left.right.parent = head.left.left;
+
         head.left.right = new Node(4);
         head.left.right.parent = head.left;
+
         head.left.right.right = new Node(5);
         head.left.right.right.parent = head.left.right;
+
         head.right = new Node(9);
         head.right.parent = head;
+
         head.right.left = new Node(8);
         head.right.left.parent = head.right;
+
         head.right.left.left = new Node(7);
         head.right.left.left.parent = head.right.left;
+
         head.right.right = new Node(10);
         head.right.right.parent = head.right;
 
+        inPrint(head);
+        System.out.println();
         Node test = head.left.left;
         System.out.println(test.value + " next: " + getSuccessorNode(test).value);
         test = head.left.left.right;

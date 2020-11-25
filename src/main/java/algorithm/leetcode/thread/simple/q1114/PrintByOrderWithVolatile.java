@@ -1,8 +1,4 @@
-package main.java.algorithm.leetcode.thread.q1114;
-
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.CyclicBarrier;
+package main.java.algorithm.leetcode.thread.simple.q1114;
 
 /**
  * 我们提供了一个类：
@@ -28,70 +24,58 @@ import java.util.concurrent.CyclicBarrier;
  * @auth tangjianghua
  * @date 2020/7/28
  */
-public class PrintByOrderWithCyclicBarrier {
+public class PrintByOrderWithVolatile {
 
-
-    CyclicBarrier cyclicBarrier = new CyclicBarrier(2, () -> {
-    });
-    CyclicBarrier cyclicBarrier2 = new CyclicBarrier(2, () -> {
-    });
+    volatile int count = 0;
 
     public void first(Runnable printFirst) throws InterruptedException {
         // printFirst.run() outputs "first". Do not change or remove this line.
-        printFirst.run();
-        try {
-            cyclicBarrier.await();
-        } catch (BrokenBarrierException e) {
-            e.printStackTrace();
+        while (count != 0) {
         }
-
+        printFirst.run();
+        count++;
     }
 
     public void second(Runnable printSecond) throws InterruptedException {
 
         // printSecond.run() outputs "second". Do not change or remove this line.
-        try {
-            cyclicBarrier.await();
-            printSecond.run();
-            cyclicBarrier2.await();
-        } catch (BrokenBarrierException e) {
-            e.printStackTrace();
+        while (count != 1) {
         }
+        printSecond.run();
+        count++;
     }
 
     public void third(Runnable printThird) throws InterruptedException {
 
         // printThird.run() outputs "third". Do not change or remove this line.
-        try {
-            cyclicBarrier2.await();
-        } catch (BrokenBarrierException e) {
-            e.printStackTrace();
+        while (count != 2) {
         }
         printThird.run();
+        count++;
     }
 
 
     public static void main(String[] args) throws InterruptedException {
-        PrintByOrderWithCyclicBarrier printByOrderWithVolatile = new PrintByOrderWithCyclicBarrier();
+        PrintByOrderWithVolatile printByOrderWithVolatile = new PrintByOrderWithVolatile();
 
         new Thread(() -> {
             try {
                 printByOrderWithVolatile.third(() -> System.out.println("third"));
-            } catch (InterruptedException  e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }).start();
         new Thread(() -> {
             try {
                 printByOrderWithVolatile.first(() -> System.out.println("first"));
-            } catch (InterruptedException  e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }).start();
         new Thread(() -> {
             try {
                 printByOrderWithVolatile.second(() -> System.out.println("second"));
-            } catch (InterruptedException  e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }).start();

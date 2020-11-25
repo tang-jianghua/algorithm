@@ -70,12 +70,16 @@ public class Code04_MaxSubBSTSize {
         boolean isBST = false;
         //当前树是搜索树时
         if (
+                //左子树是不是搜索树
                 (leftInfo == null ? true : leftInfo.isBST)
                         &&
+                        //左子树的最大值小于当前值
                         (leftInfo == null ? true : leftInfo.max < node.value)
                         &&
+                        //右子树是不是搜索树
                         (rightInfo == null ? true : rightInfo.isBST)
                         &&
+                        //右子树的最小值大于当前值
                         (rightInfo == null ? true : rightInfo.min > node.value)
 
         ) {

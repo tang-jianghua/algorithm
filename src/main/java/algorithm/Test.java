@@ -17,7 +17,8 @@ public class Test {
     public static void main(String[] args) {
         //exist();
 
-        System.out.println(Test2.x);
+
+        System.out.println("\n".getBytes()[0]);
     }
 
     public static void sort() {

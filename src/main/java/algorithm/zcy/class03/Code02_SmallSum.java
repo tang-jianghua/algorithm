@@ -39,6 +39,7 @@ public class Code02_SmallSum {
                 i = 0,
                 res = 0;
         while (index1 <= m && index2 <= r) {
+            //求和
             res += arr[index1] < arr[index2] ? (r - index2 + 1) * arr[index1] : 0;
             help[i++] = arr[index1] < arr[index2] ? arr[index1++] : arr[index2++];
         }

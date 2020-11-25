@@ -5,6 +5,7 @@ package main.java.algorithm.zcy.class07;
  * 前序-头左右
  * 中序-左头右
  * 后序-左右头
+ *
  * @auth tangjianghua
  * @date 2020/7/24
  */
@@ -20,8 +21,8 @@ public class Code01_RecursiveTraversalBT {
         }
     }
 
-    public static void print(Node head){
-        if(head==null)return;
+    public static void print(Node head) {
+        if (head == null) return;
 
         //前序
         //System.out.println(head.value);
@@ -34,8 +35,8 @@ public class Code01_RecursiveTraversalBT {
 
     }
 
-    public static void prePrint(Node head){
-        if(head==null)return;
+    public static void prePrint(Node head) {
+        if (head == null) return;
 
         //前序
         System.out.println(head.value);
@@ -48,8 +49,8 @@ public class Code01_RecursiveTraversalBT {
 
     }
 
-    public static void inPrint(Node head){
-        if(head==null)return;
+    public static void inPrint(Node head) {
+        if (head == null) return;
 
         //前序
         //System.out.println(head.value);
@@ -62,8 +63,8 @@ public class Code01_RecursiveTraversalBT {
 
     }
 
-    public static void postPrint(Node head){
-        if(head==null)return;
+    public static void postPrint(Node head) {
+        if (head == null) return;
 
         //前序
         //System.out.println(head.value);
@@ -75,6 +76,7 @@ public class Code01_RecursiveTraversalBT {
         System.out.println(head.value);
 
     }
+
     public static void main(String[] args) {
         Node head = new Node(1);
         head.left = new Node(2);

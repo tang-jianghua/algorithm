@@ -27,7 +27,7 @@ public class Code02_UnRecursiveTraversalBT {
         Stack<Node> nodes = new Stack<>();
         Node node = head;
         nodes.push(node);
-        //前序头左右 所以要先打印头，然后再把右节点压入栈中，在压入左节点
+        //前序头左右 所以要先打印头，然后再把右节点压入栈中，再压入左节点
         while (!nodes.isEmpty()) {
             Node node1 = nodes.pop();
             System.out.println(node1.value);
@@ -72,27 +72,28 @@ public class Code02_UnRecursiveTraversalBT {
         Stack<Node> help = new Stack<>();
         Stack<Node> nodes = new Stack<>();
         help.push(head);
-        while (!help.isEmpty()){
+        while (!help.isEmpty()) {
             Node pop = help.pop();
             nodes.push(pop);
-            if(pop.left!=null){
+            if (pop.left != null) {
                 help.push(pop.left);
             }
-            if(pop.right!=null){
+            if (pop.right != null) {
                 help.push(pop.right);
             }
         }
-        while (!nodes.isEmpty()){
+        while (!nodes.isEmpty()) {
             System.out.println(nodes.pop().value);
         }
 
     }
+
     /**
      * 先构建一个栈，从头结点开始压入左节点
      * 当左节点没有子节点时，不再压入
      * 开始弹出，获取队列的头节点，
      * --如果上次打印的节点是该节点的左节点，那么查看该节点有没有右节点
-     *   如果存在右节点，将右节点压入；如果不存在右节点则弹出该节点。
+     * 如果存在右节点，将右节点压入；如果不存在右节点则弹出该节点。
      * --如果上次打印的节点是该节点的右节点，则弹出该节点并打印
      * 构建一个指针指向上次弹出的节点
      *
@@ -104,15 +105,15 @@ public class Code02_UnRecursiveTraversalBT {
         Stack<Node> nodes = new Stack<>();
         nodes.push(head);
         //上次打印的节点
-        Node last=null;
+        Node last = null;
         Node peek;
         while (!nodes.isEmpty()) {
             peek = nodes.peek();
-            if(peek.left!=null&& last!=peek.left && last!=peek.right){
+            if (peek.left != null && last != peek.left && last != peek.right) {
                 nodes.push(peek.left);
-            }else if(peek.right!=null&& last==peek.left){
+            } else if (peek.right != null && last == peek.left) {
                 nodes.push(peek.right);
-            }else{
+            } else {
                 last = nodes.pop();
                 System.out.println(last.value);
             }

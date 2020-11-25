@@ -2,65 +2,49 @@ package main.java.algorithm.practice;
 
 import main.java.algorithm.util.AlgorithmUtil;
 
-import java.util.Arrays;
-
 /**
- * @auth tangjianghua
- * @date 2020/8/28
+ * 认识二分法
+ * 1）在一个有序数组中，找某个数是否存在
+ * T(N)=O(logN)
+ *
+ * @author tangjianghua
+ * date 2020/6/12
+ * time 11:33
  */
 public class BSExist {
 
 
-    /**
-     * 每次选最最大放到最顶端
-     *
-     * @param arr
-     */
-    public static void sort(int[] arr) {
-        for (int i = arr.length - 1; i > 0; i--) {
-
-            int index = i;
-            for (int j = i - 1; j >= 0; j--) {
-                if (arr[index] < arr[j]) {
-                    index = j;
-                }
-            }
-            if (index != i) {
-                swap(arr, index, i);
-            }
+    public static boolean bsExist(int[] arr, int num) {
+        if (arr == null || arr.length == 0) {
+            return false;
         }
+        return exit(arr, 0, arr.length - 1, num);
     }
 
-    public static void swap(int[] arr, int i, int j) {
-        arr[i] = arr[i] ^ arr[j];
-        arr[j] = arr[i] ^ arr[j];
-        arr[i] = arr[i] ^ arr[j];
-    }
-
-    public static int nearLeft(int[] arr, int i) {
-        if (arr == null || arr.length == 0) return -1;
-        return process(arr, i, 0, arr.length - 1);
-    }
-
-    public static int process(int[] arr, int i, int left, int right) {
-        //先写base case
-        if (left > right || left > arr.length - 1 || right < 0) return -1;
-        if (left == right) {
-            return arr[left] == i ? left : -1;
+    public static boolean exit(int[] arr, int l, int r, int num) {
+        //base case
+        if (l > arr.length - 1 || r < 0 || l > r) {
+            return false;
         }
-        int mid = left + ((right - left) >>> 1);
-        if (arr[mid] >= i) {
-            return process(arr, i, left, mid);
-        } else if (arr[mid] < i) {
-            return process(arr, i, mid + 1, right);
+        if (l == r) {
+            return arr[l] == num;
         }
+        int i = l + ((r - l) >> 1);
+        if (arr[i] == num) {
+            return true;
+        } else if (arr[i] > num) {
+            return exit(arr, l, i-1, num);
+        } else {
+            return exit(arr, i+1, r, num);
+        }
+
     }
 
     public static void main(String[] args) {
-        int[] ints = AlgorithmUtil.generatorRandomArr(10, 100);
-        sort(ints);
-        System.out.println(Arrays.toString(ints));
-        int exit = nearLeft(ints, 52);
-        System.out.println(exit);
+        int[] arr = AlgorithmUtil.generatorRandomArr(10, 100);
+        BubbleSort.sort(arr);
+        AlgorithmUtil.printArr(arr);
+        boolean b = bsExist(arr, arr[0]);
+        System.out.println(b);
     }
 }

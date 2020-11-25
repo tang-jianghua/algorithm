@@ -1,7 +1,7 @@
-package main.java.algorithm.leetcode.thread.q1114;
+package main.java.algorithm.leetcode.thread.simple.q1114;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Exchanger;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 
 /**
  * 我们提供了一个类：
@@ -27,54 +27,70 @@ import java.util.concurrent.Exchanger;
  * @auth tangjianghua
  * @date 2020/7/28
  */
-public class PrintByOrderWithExchanger {
+public class PrintByOrderWithCyclicBarrier {
 
-    Exchanger<Object> exchanger = new Exchanger<>();
-    Exchanger<Object> exchanger2 = new Exchanger<>();
+
+    CyclicBarrier cyclicBarrier = new CyclicBarrier(2, () -> {
+    });
+    CyclicBarrier cyclicBarrier2 = new CyclicBarrier(2, () -> {
+    });
 
     public void first(Runnable printFirst) throws InterruptedException {
         // printFirst.run() outputs "first". Do not change or remove this line.
         printFirst.run();
-        exchanger.exchange(1);
+        try {
+            cyclicBarrier.await();
+        } catch (BrokenBarrierException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void second(Runnable printSecond) throws InterruptedException {
 
         // printSecond.run() outputs "second". Do not change or remove this line.
-        exchanger.exchange(1);
-        printSecond.run();
-        exchanger2.exchange(1);
+        try {
+            cyclicBarrier.await();
+            printSecond.run();
+            cyclicBarrier2.await();
+        } catch (BrokenBarrierException e) {
+            e.printStackTrace();
+        }
     }
 
     public void third(Runnable printThird) throws InterruptedException {
 
         // printThird.run() outputs "third". Do not change or remove this line.
-        exchanger2.exchange(1);
+        try {
+            cyclicBarrier2.await();
+        } catch (BrokenBarrierException e) {
+            e.printStackTrace();
+        }
         printThird.run();
     }
 
 
     public static void main(String[] args) throws InterruptedException {
-        PrintByOrderWithExchanger printByOrderWithVolatile = new PrintByOrderWithExchanger();
+        PrintByOrderWithCyclicBarrier printByOrderWithVolatile = new PrintByOrderWithCyclicBarrier();
 
         new Thread(() -> {
             try {
                 printByOrderWithVolatile.third(() -> System.out.println("third"));
-            } catch (InterruptedException e) {
+            } catch (InterruptedException  e) {
                 e.printStackTrace();
             }
         }).start();
         new Thread(() -> {
             try {
                 printByOrderWithVolatile.first(() -> System.out.println("first"));
-            } catch (InterruptedException e) {
+            } catch (InterruptedException  e) {
                 e.printStackTrace();
             }
         }).start();
         new Thread(() -> {
             try {
                 printByOrderWithVolatile.second(() -> System.out.println("second"));
-            } catch (InterruptedException e) {
+            } catch (InterruptedException  e) {
                 e.printStackTrace();
             }
         }).start();

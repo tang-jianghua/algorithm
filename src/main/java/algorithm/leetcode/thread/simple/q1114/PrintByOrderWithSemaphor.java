@@ -1,6 +1,5 @@
-package main.java.algorithm.leetcode.thread.q1114;
+package main.java.algorithm.leetcode.thread.simple.q1114;
 
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Semaphore;
 
 /**

@@ -98,7 +98,7 @@ public class Code02_Heap01 {
 
 
     /**
-     * 大根堆
+     * 小根堆
      */
     public static class MyMinHeap{
 
